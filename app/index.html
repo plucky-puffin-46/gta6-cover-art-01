@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="studio">
+  <aside class="sidebar">
+    <header class="brand">
+      <h1>Vice Cover <em>Studio</em></h1>
+      <p>Your photos, cut into a multi-panel cover.</p>
+    </header>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div class="seg" id="layoutSeg">
+        <button type="button" data-layout="poster" class="on">Poster</button>
+        <button type="button" data-layout="grid">Grid</button>
+        <button type="button" data-layout="diagonal">Diagonal</button>
+        <button type="button" data-layout="hero">Hero</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Photos</h2>
+      <div class="tray" id="tray"></div>
+      <button type="button" id="addPhotos" class="wide">Add your photos</button>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <p class="hint">Or drag &amp; drop images anywhere. Click a panel to select it, then click a photo to place it. Drag inside a panel to reposition, scroll to zoom.</p>
+      <label class="check"><input type="checkbox" id="spreadToggle"> Spread one photo across all panels</label>
+      <label class="slider">Panel zoom <input type="range" id="zoomRange" min="1" max="3" step="0.01" value="1"></label>
+    </section>
+
+    <section class="group">
+      <h2>Grade</h2>
+      <div class="seg" id="gradeSeg">
+        <button type="button" data-grade="sunset" class="on">Sunset</button>
+        <button type="button" data-grade="neon">Neon</button>
+        <button type="button" data-grade="noir">Noir</button>
+        <button type="button" data-grade="clean">Clean</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Caption</h2>
+      <input id="captionInput" type="text" maxlength="42" value="VICE CITY DREAMS" aria-label="Main caption">
+      <input id="subtitleInput" type="text" maxlength="48" value="EST. 2026 · LEON COUNTY" aria-label="Subtitle">
+      <div class="row">
+        <div class="swatches" id="swatches">
+          <button type="button" class="sw on" data-color="#ffffff" style="--c:#ffffff" aria-label="White"></button>
+          <button type="button" class="sw" data-color="#ff2d95" style="--c:#ff2d95" aria-label="Hot pink"></button>
+          <button type="button" class="sw" data-color="#19e3ff" style="--c:#19e3ff" aria-label="Cyan"></button>
+          <button type="button" class="sw" data-color="#ffd92e" style="--c:#ffd92e" aria-label="Yellow"></button>
+        </div>
+        <div class="seg small" id="posSeg">
+          <button type="button" data-pos="bottom" class="on">Bottom</button>
+          <button type="button" data-pos="top">Top</button>
+        </div>
+      </div>
+      <label class="slider">Caption size <input type="range" id="captionSize" min="0.6" max="1.6" step="0.05" value="1"></label>
+    </section>
+
+    <section class="group">
+      <h2>Size</h2>
+      <div class="seg" id="sizeSeg">
+        <button type="button" data-size="1080x1080" class="on">1080 × 1080</button>
+        <button type="button" data-size="1080x1350">1080 × 1350</button>
+        <button type="button" data-size="1920x1080">1920 × 1080</button>
+      </div>
+    </section>
+
+    <button type="button" id="exportBtn" class="export">Export PNG</button>
+    <p id="status" role="status"></p>
+  </aside>
+
+  <main class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="Your cover, live preview"></canvas>
+    <p class="stage-hint">Live preview — the canvas is your cover at full export size.</p>
+  </main>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
